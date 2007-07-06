@@ -1,0 +1,94 @@
+//Muons
+// Clone Reco muons
+module CloneRecoMuons = MuonShallowCloneProducer {
+    InputTag src = globalMuons
+}
+
+// Select Reco muons
+module SelectRecoMuons = EtaPtMinCandSelector {
+    InputTag src = CloneRecoMuons
+    double ptMin = 5.
+    double etaMin = -5.
+    double etaMax = 5.
+}
+
+
+// Electrons
+// Clone Reco electrons 
+module CloneRecoElec = ElectronShallowCloneProducer {
+    InputTag src = siStripElectronToTrackAssociator:siStripElectrons
+}
+
+// Select Reco electrons
+module SelectRecoElec = EtaPtMinCandSelector {
+    InputTag src = CloneRecoElec
+    double ptMin = 5.
+    double etaMin = -3.
+    double etaMax = 3.
+}
+
+
+// Jets
+// Clone Reco jets
+module CloneRecoJets = CaloJetShallowCloneProducer {
+    InputTag src = iterativeCone5CaloJets
+}
+
+// Select Reco Cen jets
+module SelectRecoCenJets = EtaPtMinCandSelector {
+    InputTag src = CloneRecoJets
+    double ptMin = 5.
+    double etaMin = -3.
+    double etaMax = 3.
+}
+
+// Select Reco For jets
+module SelectRecoForJets = EtaPtMinCandSelector {
+    InputTag src = CloneRecoJets
+    double ptMin = 5.
+    double etaMin = -5.
+    double etaMax = -3.
+}
+
+// Make tau jet collection
+module TauJets = TauCaloJetProducer {
+    InputTag src = coneIsolationTauJetTags
+    double disMin = 0
+}
+
+// Clone Reco tau jets
+module CloneRecoTauJets = CaloJetShallowCloneProducer {
+    InputTag src = TauJets
+}
+
+// Select Reco tau jets
+module SelectRecoTauJets = EtaPtMinCandSelector {
+    InputTag src = CloneRecoTauJets
+    double ptMin = 5.
+    double etaMin = -3.
+    double etaMax = 3.
+}
+
+
+// Missing Et
+// Clone Reco Met
+module CloneRecoMet = CaloMETShallowCloneProducer {
+    InputTag src = met
+}
+
+// Select Reco Met
+module SelectRecoMet = PtMinCandSelector {
+    InputTag src = CloneRecoMet
+    double ptMin = 5.
+}
+
+sequence RecoMuonSelection = { CloneRecoMuons, SelectRecoMuons }
+sequence RecoElecSelection = { CloneRecoElec, SelectRecoElec }
+sequence RecoCenJetSelection = { CloneRecoJets, SelectRecoCenJets }
+sequence RecoForJetSelection = { CloneRecoJets, SelectRecoForJets }
+sequence RecoTauJetSelection = { TauJets, CloneRecoTauJets, SelectRecoTauJets }
+sequence RecoMetSelection = { CloneRecoMet, SelectRecoMet }
+
+
+
+

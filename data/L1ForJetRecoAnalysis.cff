@@ -1,0 +1,38 @@
+// Select Reco
+include "L1Trigger/L1Analyzer/data/RecoSelection.cff"
+
+// Select L1
+include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+
+// Match Reco and L1 jets 
+module MatchForJetsReco = TrivialDeltaRMatcher {
+    InputTag src = SelectL1ForJets
+    InputTag matched = SelectRecoForJets
+    double distMin = 0.5
+}
+
+// Match L1 and Reco jets
+module MatchRecoForJets = TrivialDeltaRMatcher {
+    InputTag src = SelectRecoForJets
+    InputTag matched = SelectL1ForJets
+    double distMin = 0.5
+}
+
+// Histogram limits
+include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+
+// Root output file
+include "L1Trigger/L1Analyzer/data/TFile.cfi"
+
+// Analyzer
+module L1AnalyzerForJetsReco = L1Analyzer { 
+    untracked InputTag CandidateSource   = SelectL1ForJets
+    untracked InputTag ResMatchMapSource = MatchForJetsReco
+    untracked InputTag ReferenceSource   = SelectRecoForJets
+    untracked InputTag EffMatchMapSource = MatchRecoForJets
+    using histoLimits
+}
+
+// Define analysis sequence
+sequence L1ForJetRecoAnalysis = { RecoForJetSelection & L1ForJetSelection, MatchForJetReco & MatchRecoForJet, L1AnalyzerForJetReco}
+

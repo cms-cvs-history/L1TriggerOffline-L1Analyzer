@@ -1,0 +1,37 @@
+// Select Reco
+include "L1Trigger/L1Analyzer/data/RecoSelection.cff"
+
+// Select L1
+include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+
+// Match Reco and L1 tau jets 
+module MatchTauJetsReco = TrivialDeltaRMatcher {
+    InputTag src = SelectL1TauJets
+    InputTag matched = SelectRecoTauJets
+    double distMin = 0.5
+}
+
+// Match L1 and Reco tau jets
+module MatchRecoTauJets = TrivialDeltaRMatcher {
+    InputTag src = SelectRecoTauJets
+    InputTag matched = SelectL1TauJets
+    double distMin = 0.5
+}
+
+// Histogram limits
+include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+
+// Root output file
+include "L1Trigger/L1Analyzer/data/TFile.cfi"
+
+// Analyzer
+module L1AnalyzerTauJetsReco = L1Analyzer { 
+    untracked InputTag CandidateSource   = SelectL1TauJets
+    untracked InputTag ResMatchMapSource = MatchTauJetsReco
+    untracked InputTag ReferenceSource   = SelectRecoTauJets
+    untracked InputTag EffMatchMapSource = MatchRecoTauJets
+    using histoLimits
+}
+
+// Define analysis sequence
+sequence L1TauJetRecoAnalysis = { RecoTauJetSelection & L1TauJetSelection, MatchTauJetReco & MatchRecoTauJet, L1AnalyzerTauJetReco}

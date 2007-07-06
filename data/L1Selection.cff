@@ -1,0 +1,96 @@
+//Muons
+// Clone L1 muons
+module CloneL1ExtraMuons = L1MuonParticleShallowCloneProducer {
+    InputTag src = l1extraParticles
+}
+
+// Select L1 muons
+module SelectL1Muons = PtMinCandSelector {
+    InputTag src = CloneL1ExtraMuons
+    double ptMin = 5.
+}
+
+
+// Iso EM
+// Clone L1 isolated EM
+module CloneL1ExtraIsoEm = L1EmParticleShallowCloneProducer {
+    InputTag src = l1extraParticles:Isolated
+}
+
+// Select L1 isolated EM
+module SelectL1IsoEm = PtMinCandSelector {
+    InputTag src = CloneL1ExtraIsoEm
+    double ptMin = 5.
+}
+
+
+// Non-iso EM
+// Clone L1 isolated EM
+module CloneL1ExtraNonIsoEm = L1EmParticleShallowCloneProducer {
+    InputTag src = l1extraParticles:NonIsolated
+}
+
+// Select L1 isolated EM
+module SelectL1NonIsoEm = PtMinCandSelector {
+    InputTag src = CloneL1ExtraNonIsoEm
+    double ptMin = 5.
+}
+
+
+// Cen Jets
+// Clone L1 central jets
+module CloneL1ExtraCenJets = L1JetParticleShallowCloneProducer {
+    InputTag src = l1extraParticles:Central
+}
+
+// Select L1 central jets
+module SelectL1CenJets = PtMinCandSelector {
+    InputTag src = CloneL1ExtraCenJets
+    double ptMin = 5.
+}
+
+
+// For Jets
+// Clone L1 forward jets
+module CloneL1ExtraForJets = L1JetParticleShallowCloneProducer {
+    InputTag src = l1extraParticles:Forward
+}
+
+// Select L1 forward jets
+module SelectL1ForJets = PtMinCandSelector {
+    InputTag src = CloneL1ExtraForJets
+    double ptMin = 5.
+}
+
+
+// Tau Jets
+// Clone L1 tau jets
+module CloneL1ExtraTauJets = L1JetParticleShallowCloneProducer {
+    InputTag src = l1extraParticles:Tau
+}
+
+// Select L1 tau jets
+module SelectL1TauJets = PtMinCandSelector {
+    InputTag src = CloneL1ExtraTauJets
+    double ptMin = 5.
+}
+
+// Missing Et
+// Clone L1 Met
+module CloneL1ExtraMet = L1EtMissParticleShallowCloneProducer {
+    InputTag src = l1extraParticles
+}
+
+// Select L1 Met
+module SelectL1Met = PtMinCandSelector {
+    InputTag src = CloneL1ExtraMet
+    double ptMin = 5.
+}
+
+sequence L1MuonSelection = { CloneL1ExtraMuons, SelectL1Muons }
+sequence L1IsoEmSelection = { CloneL1ExtraIsoEm, SelectL1IsoEm }
+sequence L1NonIsoEmSelection = { CloneL1ExtraNonIsoEm, SelectL1NonIsoEm }
+sequence L1CenJetSelection = { CloneL1ExtraCenJets, SelectL1CenJets }
+sequence L1ForJetSelection = { CloneL1ExtraForJets, SelectL1ForJets }
+sequence L1TauJetSelection = { CloneL1ExtraTauJets, SelectL1TauJets }
+sequence L1MetSelection = { CloneL1ExtraMet, SelectL1Met }

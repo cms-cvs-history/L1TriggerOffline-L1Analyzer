@@ -1,0 +1,37 @@
+// Select MC truth
+include "L1Trigger/L1Analyzer/data/GenSelection.cff"
+
+// Select L1
+include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+
+// Match generator and L1 jets 
+module MatchCenJetsMc = TrivialDeltaRMatcher {
+    InputTag src = SelectL1CenJets
+    InputTag matched = SelectGenCenJets
+    double distMin = 0.5
+}
+
+// Match L1 and generator jets
+module MatchMcCenJets = TrivialDeltaRMatcher {
+    InputTag src = SelectGenCenJets
+    InputTag matched = SelectL1CenJets
+    double distMin = 0.5
+}
+
+// Histogram limits
+include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+
+// Root output file
+include "L1Trigger/L1Analyzer/data/TFile.cfi"
+
+// Analyzer
+module L1AnalyzerCenJetsMC = L1Analyzer { 
+    untracked InputTag CandidateSource   = SelectL1CenJets
+    untracked InputTag ResMatchMapSource = MatchCenJetsMc
+    untracked InputTag ReferenceSource   = SelectGenCenJets
+    untracked InputTag EffMatchMapSource = MatchMcCenJets
+    using histoLimits
+}
+
+// Define analysis sequence
+sequence L1CenJetMCAnalysis = { L1CenJetSelection & GenCenJetSelection, MatchCenJetsMc & MatchMcCenJets,L1AnalyzerCenJetsMC}

@@ -1,0 +1,38 @@
+// Select MC truth
+include "L1Trigger/L1Analyzer/data/GenSelection.cff"
+
+// Select L1
+include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+
+// Match generator taus and L1 tau jets 
+module MatchTauJetsMc = TrivialDeltaRMatcher {
+    InputTag src = SelectL1TauJets
+    InputTag matched = SelectGenTauJets
+    double distMin = 0.5
+}
+
+// Match L1 and generator tau jets
+module MatchMcTauJets = TrivialDeltaRMatcher {
+    InputTag src = SelectGenTauJets
+    InputTag matched = SelectL1TauJets
+    double distMin = 0.5
+}
+
+// Histogram limits
+include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+
+// Root output file
+include "L1Trigger/L1Analyzer/data/TFile.cfi"
+
+// Analyzer
+module L1AnalyzerTauJetsMC = L1Analyzer { 
+    untracked InputTag CandidateSource   = SelectL1TauJets
+    untracked InputTag ResMatchMapSource = MatchTauJetsMc
+    untracked InputTag ReferenceSource   = SelectGenTauJets
+    untracked InputTag EffMatchMapSource = MatchMcTauJets
+    using histoLimits
+}
+
+// Define analysis sequence
+sequence L1TauJetMCAnalysis = { L1TauJetSelection & GenTauJetSelection, MatchTauJetsMc & MatchMcTauJets,L1AnalyzerTauJetsMC}
+

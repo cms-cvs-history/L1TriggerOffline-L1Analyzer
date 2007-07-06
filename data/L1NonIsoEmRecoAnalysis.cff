@@ -1,0 +1,37 @@
+// Select Reco
+include "L1Trigger/L1Analyzer/data/RecoSelection.cff"
+
+// Select L1
+include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+
+// Match Reco and L1 electrons
+module MatchNonIsoEmReco = TrivialDeltaRMatcher {
+    InputTag src = SelectL1NonIsoEm
+    InputTag matched = SelectRecoElec
+    double distMin = 0.5
+}
+
+// Match L1 and Reco electrons
+module MatchRecoNonIsoEm = TrivialDeltaRMatcher {
+    InputTag src = SelectRecoElec
+    InputTag matched = SelectL1NonIsoEm
+    double distMin = 0.5
+}
+
+// Histogram limits
+include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+
+// Root output file
+include "L1Trigger/L1Analyzer/data/TFile.cfi"
+
+// Analyzer
+module L1AnalyzerNonIsoEmReco = L1Analyzer { 
+    untracked InputTag CandidateSource   = SelectL1NonIsoEm
+    untracked InputTag ResMatchMapSource = MatchNonIsoEmReco
+    untracked InputTag ReferenceSource   = SelectRecoElec
+    untracked InputTag EffMatchMapSource = MatchRecoNonIsoEm
+    using histoLimits
+}
+
+// Define analysis sequence
+sequence L1NonIsoEmRecoAnalysis = { RecoElecSelection & L1NonIsoEmSelection, MatchNonIsoEmReco & MatchRecoNonIsoEm, L1AnalyzerNonIsoEmReco}
