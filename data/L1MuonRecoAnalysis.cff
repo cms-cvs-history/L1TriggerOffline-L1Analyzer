@@ -13,10 +13,10 @@ module MatchRecoMuons = TrivialDeltaRMatcher {
 }
 
 // Histogram limits
-include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+include "L1TriggerOffline/L1Analyzer/data/HistoLimits.cfi"
 
 // Root output file
-include "L1Trigger/L1Analyzer/data/TFile.cfi"
+include "L1TriggerOffline/L1Analyzer/data/TFile.cfi"
 
 // Analyzer
 module L1AnalyzerMuonReco = L1Analyzer { 

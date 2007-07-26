@@ -1,8 +1,8 @@
 // Select MC truth
-include "L1Trigger/L1Analyzer/data/GenSelection.cff"
+include "L1TriggerOffline/L1Analyzer/data/GenSelection.cff"
 
 // Select L1
-include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+include "L1TriggerOffline/L1Analyzer/data/L1Selection.cff"
 
 // Match generator and L1 electrons
 module MatchNonIsoEmMc = TrivialDeltaRMatcher {
@@ -19,10 +19,10 @@ module MatchMcNonIsoEm = TrivialDeltaRMatcher {
 }
 
 // Histogram limits
-include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+include "L1TriggerOffline/L1Analyzer/data/HistoLimits.cfi"
 
 // Root output file
-include "L1Trigger/L1Analyzer/data/TFile.cfi"
+include "L1TriggerOffline/L1Analyzer/data/TFile.cfi"
 
 // Analyzer
 module L1AnalyzerNonIsoEmMC = L1Analyzer { 

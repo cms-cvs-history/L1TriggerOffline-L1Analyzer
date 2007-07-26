@@ -1,8 +1,8 @@
 // Select Reco
-include "L1Trigger/L1Analyzer/data/RecoSelection.cff"
+include "L1TriggerOffline/L1Analyzer/data/RecoSelection.cff"
 
 // Select L1
-include "L1Trigger/L1Analyzer/data/L1Selection.cff"
+include "L1TriggerOffline/L1Analyzer/data/L1Selection.cff"
 
 // Match Reco and L1 tau jets 
 module MatchTauJetsReco = TrivialDeltaRMatcher {
@@ -19,10 +19,10 @@ module MatchRecoTauJets = TrivialDeltaRMatcher {
 }
 
 // Histogram limits
-include "L1Trigger/L1Analyzer/data/HistoLimits.cfi"
+include "L1TriggerOffline/L1Analyzer/data/HistoLimits.cfi"
 
 // Root output file
-include "L1Trigger/L1Analyzer/data/TFile.cfi"
+include "L1TriggerOffline/L1Analyzer/data/TFile.cfi"
 
 // Analyzer
 module L1AnalyzerTauJetsReco = L1Analyzer { 
