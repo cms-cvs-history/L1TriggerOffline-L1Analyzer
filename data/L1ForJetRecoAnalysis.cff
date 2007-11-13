@@ -34,5 +34,5 @@ module L1AnalyzerForJetsReco = L1Analyzer {
 }
 
 // Define analysis sequence
-sequence L1ForJetRecoAnalysis = { RecoForJetSelection & L1ForJetSelection, MatchForJetReco & MatchRecoForJet, L1AnalyzerForJetReco}
+sequence L1ForJetRecoAnalysis = { RecoForJetSelection & L1ForJetSelection, MatchForJetsReco & MatchRecoForJets, L1AnalyzerForJetsReco}
 

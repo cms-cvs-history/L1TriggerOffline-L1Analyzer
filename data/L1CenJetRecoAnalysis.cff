@@ -34,4 +34,4 @@ module L1AnalyzerCenJetsReco = L1Analyzer {
 }
 
 // Define analysis sequence
-sequence L1CenJetRecoAnalysis = { RecoCenJetSelection & L1CenJetSelection, MatchCenJetReco & MatchRecoCenJet, L1AnalyzerCenJetReco}
+sequence L1CenJetRecoAnalysis = { RecoCenJetSelection & L1CenJetSelection, MatchCenJetsReco & MatchRecoCenJets, L1AnalyzerCenJetsReco}
