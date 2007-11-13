@@ -2,24 +2,24 @@ block histoLimits = {
     // Number of bins
     untracked int32  etNBins  = 50 
     untracked int32  etaNBins = 22
-    untracked int32  phiNBins = 18
+    untracked int32  phiNBins = 19
     
     // Histogram limits
     untracked double etMin  = 0 
     untracked double etMax  = 100
     untracked double etaMin = -5
     untracked double etaMax =  5
-    untracked double phiMin = -3.1415927
-    untracked double phiMax =  3.1415927
+    untracked double phiMin = -3.3161256
+    untracked double phiMax =  3.3161256
 
     // Bins and limits for the resolutions
-    untracked int32  etResNBins  = 100 
+    untracked int32  etResNBins  = 150 
     untracked int32  etaResNBins = 100
     untracked int32  phiResNBins = 100
     untracked int32  delRNBins = 100
     
     untracked double etResMin  = -1 
-    untracked double etResMax  =  1
+    untracked double etResMax  =  2
     untracked double etaResMin = -1
     untracked double etaResMax =  1
     untracked double phiResMin = -1
