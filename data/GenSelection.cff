@@ -1,7 +1,7 @@
 // Muons
 module SelectGenMuons = EtaPtMinPdgIdCandSelector {
     InputTag src = genParticleCandidates
-    double ptMin = 5.
+    double ptMin = 10.
     double etaMin = -5.
     double etaMax = 5.
     vint32 pdgId = {13}
@@ -11,7 +11,7 @@ module SelectGenMuons = EtaPtMinPdgIdCandSelector {
 // Electrons
 module SelectGenElec = EtaPtMinPdgIdCandSelector {
     InputTag src = genParticleCandidates
-    double ptMin = 5.
+    double ptMin = 10.
     double etaMin = -3.
     double etaMax = 3.
     vint32 pdgId = {11}
@@ -27,7 +27,7 @@ module CloneGenJets = GenJetShallowCloneProducer {
 // Select central generator jets
 module SelectGenCenJets = EtaPtMinCandSelector {
     InputTag src = CloneGenJets
-    double ptMin = 5.
+    double ptMin = 20.
     double etaMin = -3.
     double etaMax = 3.
 }
@@ -35,7 +35,7 @@ module SelectGenCenJets = EtaPtMinCandSelector {
 // Select forward generator jets
 module SelectGenForJets = EtaPtMinCandSelector {
     InputTag src = CloneGenJets
-    double ptMin = 5.
+    double ptMin = 20.
     double etaMin = -5.
     double etaMax = -3.
 }
@@ -44,7 +44,7 @@ module SelectGenForJets = EtaPtMinCandSelector {
 // Select generator tau particles
 module SelectGenTauJets = EtaPtMinPdgIdCandSelector {
     InputTag src = genParticleCandidates
-    double ptMin = 5.
+    double ptMin = 10.
     double etaMin = -3.
     double etaMax = 3.
     vint32 pdgId = {15}
@@ -59,7 +59,7 @@ module CloneGenMet = GenMETShallowCloneProducer {
 // Select generator Met
 module SelectGenMet = PtMinCandSelector {
     InputTag src = CloneGenMet
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 

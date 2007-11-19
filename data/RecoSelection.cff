@@ -7,7 +7,7 @@ module CloneRecoMuons = MuonShallowCloneProducer {
 // Select Reco muons
 module SelectRecoMuons = EtaPtMinCandSelector {
     InputTag src = CloneRecoMuons
-    double ptMin = 5.
+    double ptMin = 10.
     double etaMin = -5.
     double etaMax = 5.
 }
@@ -22,7 +22,7 @@ module CloneRecoElec = ElectronShallowCloneProducer {
 // Select Reco electrons
 module SelectRecoElec = EtaPtMinCandSelector {
     InputTag src = CloneRecoElec
-    double ptMin = 5.
+    double ptMin = 10.
     double etaMin = -3.
     double etaMax = 3.
 }
@@ -37,7 +37,7 @@ module CloneRecoJets = CaloJetShallowCloneProducer {
 // Select Reco Cen jets
 module SelectRecoCenJets = EtaPtMinCandSelector {
     InputTag src = CloneRecoJets
-    double ptMin = 5.
+    double ptMin = 20.
     double etaMin = -3.
     double etaMax = 3.
 }
@@ -45,7 +45,7 @@ module SelectRecoCenJets = EtaPtMinCandSelector {
 // Select Reco For jets
 module SelectRecoForJets = EtaPtMinCandSelector {
     InputTag src = CloneRecoJets
-    double ptMin = 5.
+    double ptMin = 20.
     double etaMin = -5.
     double etaMax = -3.
 }
@@ -64,7 +64,7 @@ module CloneRecoTauJets = CaloJetShallowCloneProducer {
 // Select Reco tau jets
 module SelectRecoTauJets = EtaPtMinCandSelector {
     InputTag src = CloneRecoTauJets
-    double ptMin = 5.
+    double ptMin = 10.
     double etaMin = -3.
     double etaMax = 3.
 }
@@ -79,7 +79,7 @@ module CloneRecoMet = CaloMETShallowCloneProducer {
 // Select Reco Met
 module SelectRecoMet = PtMinCandSelector {
     InputTag src = CloneRecoMet
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 sequence RecoMuonSelection = { CloneRecoMuons, SelectRecoMuons }

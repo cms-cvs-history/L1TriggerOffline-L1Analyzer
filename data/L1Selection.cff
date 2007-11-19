@@ -7,7 +7,7 @@ module CloneL1ExtraMuons = L1MuonParticleShallowCloneProducer {
 // Select L1 muons
 module SelectL1Muons = PtMinCandSelector {
     InputTag src = CloneL1ExtraMuons
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 
@@ -20,7 +20,7 @@ module CloneL1ExtraIsoEm = L1EmParticleShallowCloneProducer {
 // Select L1 isolated EM
 module SelectL1IsoEm = PtMinCandSelector {
     InputTag src = CloneL1ExtraIsoEm
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 
@@ -33,7 +33,7 @@ module CloneL1ExtraNonIsoEm = L1EmParticleShallowCloneProducer {
 // Select L1 isolated EM
 module SelectL1NonIsoEm = PtMinCandSelector {
     InputTag src = CloneL1ExtraNonIsoEm
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 
@@ -46,7 +46,7 @@ module CloneL1ExtraCenJets = L1JetParticleShallowCloneProducer {
 // Select L1 central jets
 module SelectL1CenJets = PtMinCandSelector {
     InputTag src = CloneL1ExtraCenJets
-    double ptMin = 5.
+    double ptMin = 20.
 }
 
 
@@ -59,7 +59,7 @@ module CloneL1ExtraForJets = L1JetParticleShallowCloneProducer {
 // Select L1 forward jets
 module SelectL1ForJets = PtMinCandSelector {
     InputTag src = CloneL1ExtraForJets
-    double ptMin = 5.
+    double ptMin = 20.
 }
 
 
@@ -72,7 +72,7 @@ module CloneL1ExtraTauJets = L1JetParticleShallowCloneProducer {
 // Select L1 tau jets
 module SelectL1TauJets = PtMinCandSelector {
     InputTag src = CloneL1ExtraTauJets
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 // Missing Et
@@ -84,7 +84,7 @@ module CloneL1ExtraMet = L1EtMissParticleShallowCloneProducer {
 // Select L1 Met
 module SelectL1Met = PtMinCandSelector {
     InputTag src = CloneL1ExtraMet
-    double ptMin = 5.
+    double ptMin = 10.
 }
 
 sequence L1MuonSelection = { CloneL1ExtraMuons, SelectL1Muons }

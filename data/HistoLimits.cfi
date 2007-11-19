@@ -1,8 +1,8 @@
 block histoLimits = {
     // Number of bins
     untracked int32  etNBins  = 50 
-    untracked int32  etaNBins = 22
-    untracked int32  phiNBins = 19
+    untracked int32  etaNBins = 50
+    untracked int32  phiNBins = 50
     
     // Histogram limits
     untracked double etMin  = 0 
