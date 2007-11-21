@@ -28,5 +28,5 @@ module L1AnalyzerMuonReco = L1Analyzer {
 }
 
 // Define analysis sequence
-sequence L1MuonRecoAnalysis = { RecoMuonsSelection & L1MuonSelection, MatchMuonsReco & MatchRecoMuons, L1AnalyzerMuonReco}
+sequence L1MuonRecoAnalysis = { RecoMuonSelection & L1MuonSelection, MatchMuonsReco & MatchRecoMuons, L1AnalyzerMuonReco}
 

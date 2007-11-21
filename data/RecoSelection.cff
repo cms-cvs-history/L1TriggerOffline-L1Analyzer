@@ -1,7 +1,7 @@
 //Muons
 // Clone Reco muons
 module CloneRecoMuons = MuonShallowCloneProducer {
-    InputTag src = globalMuons
+    InputTag src = muons
 }
 
 // Select Reco muons
