@@ -1,7 +1,7 @@
 //Muons
 // Clone Reco muons
 module CloneRecoMuons = MuonShallowCloneProducer {
-    InputTag src = muons
+    InputTag src = globalMuons
 }
 
 // Select Reco muons
@@ -29,12 +29,9 @@ module SelectRecoElec = EtaPtMinCandSelector {
 
 
 // Jets
-// Correct Reco jets
-include "JetMETCorrections/Configuration/data/MCJetCorrections152.cff" 
-
 // Clone Reco jets
 module CloneRecoJets = CaloJetShallowCloneProducer {
-    InputTag src = MCJetCorJetIcone5
+    InputTag src = iterativeCone5CaloJets
 }
 
 // Select Reco Cen jets
@@ -87,8 +84,8 @@ module SelectRecoMet = PtMinCandSelector {
 
 sequence RecoMuonSelection = { CloneRecoMuons, SelectRecoMuons }
 sequence RecoElecSelection = { CloneRecoElec, SelectRecoElec }
-sequence RecoCenJetSelection = { MCJetCorJetIcone5, CloneRecoJets, SelectRecoCenJets }
-sequence RecoForJetSelection = { MCJetCorJetIcone5, CloneRecoJets, SelectRecoForJets }
+sequence RecoCenJetSelection = { CloneRecoJets, SelectRecoCenJets }
+sequence RecoForJetSelection = { CloneRecoJets, SelectRecoForJets }
 sequence RecoTauJetSelection = { TauJets, CloneRecoTauJets, SelectRecoTauJets }
 sequence RecoMetSelection = { CloneRecoMet, SelectRecoMet }
 
