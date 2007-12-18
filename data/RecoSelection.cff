@@ -31,6 +31,7 @@ module SelectRecoElec = EtaPtMinCandSelector {
 // Jets
 // Correct Reco jets
 include "JetMETCorrections/Configuration/data/MCJetCorrections152.cff" 
+es_prefer MCJetCorrectorIcone5 = MCJetCorrectionService {}
 
 // Clone Reco jets
 module CloneRecoJets = CaloJetShallowCloneProducer {
