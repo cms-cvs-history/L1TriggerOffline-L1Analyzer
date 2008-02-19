@@ -44,7 +44,7 @@ module SelectGenForJets = EtaPtMinCandSelector {
 // Select generator tau particles
 module SelectGenTauJets = EtaPtMinPdgIdCandSelector {
     InputTag src = genParticleCandidates
-    double ptMin = 10.
+    double ptMin = 20.
     double etaMin = -3.
     double etaMax = 3.
     vint32 pdgId = {15}

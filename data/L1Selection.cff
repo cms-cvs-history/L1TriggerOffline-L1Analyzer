@@ -72,7 +72,7 @@ module CloneL1ExtraTauJets = L1JetParticleShallowCloneProducer {
 // Select L1 tau jets
 module SelectL1TauJets = PtMinCandSelector {
     InputTag src = CloneL1ExtraTauJets
-    double ptMin = 10.
+    double ptMin = 20.
 }
 
 // Missing Et
