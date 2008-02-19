@@ -11,10 +11,22 @@ module MatchCenJetsMc = TrivialDeltaRMatcher {
     double distMin = 0.5
 }
 
+module MatchTauJetsQCDMc = TrivialDeltaRMatcher {
+    InputTag src = SelectL1TauJets
+    InputTag matched = SelectGenCenJets
+    double distMin = 0.5
+}
+
 // Match L1 and generator jets
 module MatchMcCenJets = TrivialDeltaRMatcher {
     InputTag src = SelectGenCenJets
     InputTag matched = SelectL1CenJets
+    double distMin = 0.5
+}
+
+module MatchQCDMcTauJets = TrivialDeltaRMatcher {
+    InputTag src = SelectGenCenJets
+    InputTag matched = SelectL1TauJets
     double distMin = 0.5
 }
 
@@ -33,5 +45,15 @@ module L1AnalyzerCenJetsMC = L1Analyzer {
     using histoLimits
 }
 
+module L1AnalyzerTauJetsQCDMC = L1Analyzer { 
+    untracked InputTag CandidateSource   = SelectL1TauJets
+    untracked InputTag ResMatchMapSource = MatchTauJetsQCDMc
+    untracked InputTag ReferenceSource   = SelectGenCenJets
+    untracked InputTag EffMatchMapSource = MatchQCDMcTauJets
+    using histoLimits
+}
+
 // Define analysis sequence
-sequence L1CenJetMCAnalysis = { L1CenJetSelection & GenCenJetSelection, MatchCenJetsMc & MatchMcCenJets,L1AnalyzerCenJetsMC}
+sequence L1CenJetMCAnalysis = { L1CenJetSelection & GenCenJetSelection, MatchCenJetsMc & MatchMcCenJets,L1AnalyzerCenJetsMC }
+
+sequence L1TauJetQCDMCAnalysis = { L1TauJetSelection & GenCenJetSelection, MatchTauJetsQCDMc & MatchQCDMcTauJets,L1AnalyzerTauJetsQCDMC }
