@@ -34,4 +34,10 @@ module L1AnalyzerMuonMC = L1Analyzer {
 }
 
 // Define analysis sequence
-sequence L1MuonMCAnalysis = {CloneL1ExtraMuons,SelectL1Muons,SelectGenMuons,MatchMuonsMc,MatchMcMuons,L1AnalyzerMuonMC}
+sequence L1MuonMCAnalysis = {
+  L1MuonSelection &
+  GenMuonSelection,
+  MatchMuonsMc &
+  MatchMcMuons,
+  L1AnalyzerMuonMC
+}

@@ -34,5 +34,11 @@ module L1AnalyzerTauJetsMC = L1Analyzer {
 }
 
 // Define analysis sequence
-sequence L1TauJetMCAnalysis = { L1TauJetSelection & GenTauJetSelection, MatchTauJetsMc & MatchMcTauJets,L1AnalyzerTauJetsMC}
+sequence L1TauJetMCAnalysis = {
+  L1TauJetSelection &
+  GenTauJetSelection,
+  MatchTauJetsMc &
+  MatchMcTauJets,
+  L1AnalyzerTauJetsMC
+}
 

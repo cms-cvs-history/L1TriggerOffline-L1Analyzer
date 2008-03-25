@@ -34,4 +34,10 @@ module L1AnalyzerIsoEmMC = L1Analyzer {
 }
 
 // Define analysis sequence
-sequence L1IsoEmMCAnalysis = { L1IsoEmSelection & GenElecSelection, MatchIsoEmMc & MatchMcIsoEm, L1AnalyzerIsoEmMC}
+sequence L1IsoEmMCAnalysis = {
+  L1IsoEmSelection &
+  GenElecSelection,
+  MatchIsoEmMc &
+  MatchMcIsoEm,
+  L1AnalyzerIsoEmMC
+}

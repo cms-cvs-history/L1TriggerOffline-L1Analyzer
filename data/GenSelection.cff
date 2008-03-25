@@ -62,10 +62,13 @@ module SelectGenMet = PtMinCandSelector {
     double ptMin = 10.
 }
 
+include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
+include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidates.cfi"
 
-sequence GenMuonSelection = { SelectGenMuons }
-sequence GenElecSelection = { SelectGenElec }
+
+sequence GenMuonSelection = { genParticleCandidates, SelectGenMuons }
+sequence GenElecSelection = { genParticleCandidates, SelectGenElec }
 sequence GenCenJetSelection = { CloneGenJets, SelectGenCenJets }
 sequence GenForJetSelection = { CloneGenJets, SelectGenForJets }
-sequence GenTauJetSelection = { SelectGenTauJets }
+sequence GenTauJetSelection = { genParticleCandidates, SelectGenTauJets }
 sequence GenMetSelection = { CloneGenMet, SelectGenMet }
