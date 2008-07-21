@@ -1,3 +1,0 @@
-service = TFileService { 
-    string fileName = "l1Analyzer.root"
-}   
