@@ -9,7 +9,7 @@ process.load("L1TriggerConfig.L1GtConfigProducers.L1GtConfig_cff")
 #process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_startup2_v2_Unprescaled_cff")
 process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_startup2_v4_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
 
 process.source = cms.Source("PoolSource",
                            fileNames = cms.untracked.vstring(
@@ -28,6 +28,8 @@ process.load("L1Trigger.Configuration.L1DummyConfig_cff")
 # Extract the L1GTriggerReadoutRecord
 process.load("L1TriggerOffline.L1Analyzer.TriggerOperation_cfi")
 
+process.load("L1TriggerOffline.L1Analyzer.GtToGctCands_cff")
+
 process.load("L1TriggerOffline.L1Analyzer.L1CenJetRecoAnalysis_cff")
 process.load("L1TriggerOffline.L1Analyzer.L1TauJetRecoAnalysis_cff")
 process.load("L1TriggerOffline.L1Analyzer.L1MergedJetRecoAnalysis_cff")
@@ -36,6 +38,13 @@ process.load("L1TriggerConfig.L1GtConfigProducers.L1GtConfig_cff")
 process.load("L1Trigger.Skimmer.l1Filter_cfi")
 process.l1Filter.algorithms = cms.vstring('L1_SingleEG1','L1_SingleEG5','L1_SingleEG8','L1_SingleEG10','L1_SingleEG12','L1_SingleEG15','L1_SingleEG20')
 
-process.test = cms.Path(process.demo+process.l1Filter+process.L1MergedJetRecoAnalysis)
+
+#process.test = cms.Path(process.demo+process.l1Filter+process.gctCandsFromGt+process.L1TauJetRecoAnalysis)
 ##process.test = cms.Path(process.demo+process.l1Filter+process.L1TauJetRecoAnalysis+process.L1CenJetRecoAnalysis+process.L1MergedJetRecoAnalysis)
 
+process.output = cms.OutputModule("PoolOutputModule",
+                                  outputCommands = cms.untracked.vstring('drop *','keep *_*_*_Test'),
+                                  fileName = cms.untracked.string('test.root')
+                                  )
+
+process.test = cms.Path(process.gctCandsFromGt+process.l1extraParticles+process.output)
