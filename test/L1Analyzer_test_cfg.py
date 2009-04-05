@@ -9,7 +9,7 @@ process.load("L1TriggerConfig.L1GtConfigProducers.L1GtConfig_cff")
 #process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_startup2_v2_Unprescaled_cff")
 process.load("L1TriggerConfig.L1GtConfigProducers.Luminosity.startup.L1Menu_startup2_v4_L1T_Scales_20080926_startup_Imp0_Unprescaled_cff")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
 
 process.source = cms.Source("PoolSource",
                            fileNames = cms.untracked.vstring(
@@ -43,7 +43,7 @@ process.l1Filter.algorithms = cms.vstring('L1_SingleEG1','L1_SingleEG5','L1_Sing
 ##process.test = cms.Path(process.demo+process.l1Filter+process.L1TauJetRecoAnalysis+process.L1CenJetRecoAnalysis+process.L1MergedJetRecoAnalysis)
 
 process.output = cms.OutputModule("PoolOutputModule",
-                                  outputCommands = cms.untracked.vstring('drop *','keep *_*_*_Test'),
+                                  outputCommands = cms.untracked.vstring('drop *','keep *_*_*_Test','keep *_l1extraParticles_*_*'),
                                   fileName = cms.untracked.string('test.root')
                                   )
 
