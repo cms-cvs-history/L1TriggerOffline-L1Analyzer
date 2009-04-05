@@ -22,8 +22,7 @@ process.source = cms.Source("PoolSource",
 )
 )
 
-process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'CRAFT_V4P'
+process.load("L1Trigger.Configuration.L1StartupConfig_cff")
 
 # L1 EventSetup
 #process.load("L1Trigger.Configuration.L1DummyConfig_cff")
